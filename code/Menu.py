@@ -21,8 +21,14 @@ class Menu:
         while True:
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(50, "Mountain", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
-            self.menu_text(50, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text_outline(60, "DEEP", (0, 120, 255), (0, 0, 0), (WIN_WIDTH / 2, 70))
+            self.menu_text_outline(60, "CURRENT", (0, 120, 255), (0, 0, 0), (WIN_WIDTH / 2, 140))
+
+            self.menu_text(15, "CONTROLES", COLOR_WHITE, (WIN_WIDTH - 140, 180))
+            self.menu_text(10, "P1: SETAS - MOVIMENTO", COLOR_WHITE, (WIN_WIDTH - 140, 205))
+            self.menu_text(10, "P2: WASD - MOVIMENTO", COLOR_WHITE, (WIN_WIDTH - 140, 225))
+            self.menu_text(10, "PEGUE 20 DIAMANTES PARA VENCER", COLOR_WHITE, (WIN_WIDTH - 140, 245))
+            self.menu_text(10, "ENEMY CAUSA DANO AUTOMATICO", COLOR_WHITE, (WIN_WIDTH - 140, 265))
 
             for i in range(len(MENU_OPTION)):
                     if i == menu_option:
@@ -55,3 +61,17 @@ class Menu:
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
         self.window.blit(source=text_surf, dest=text_rect)
+
+    def menu_text_outline(self, text_size, text, text_color, outline_color, pos):
+        font = pygame.font.SysFont("Arial Black", text_size, bold=True)
+
+        # contorno (desenha várias vezes em volta)
+        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            surf = font.render(text, True, outline_color)
+            rect = surf.get_rect(center=(pos[0] + dx, pos[1] + dy))
+            self.window.blit(surf, rect)
+
+        # texto principal
+        surf = font.render(text, True, text_color)
+        rect = surf.get_rect(center=pos)
+        self.window.blit(surf, rect)

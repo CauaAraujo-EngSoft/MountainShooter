@@ -5,7 +5,7 @@ import pygame
 from code.Entity import Entity
 
 from code.Const import ENTITY_SPEED, WIN_HEIGHT, PLAYER_KEY_UP, PLAYER_KEY_DOWN, PLAYER_KEY_LEFT, PLAYER_KEY_RIGHT, \
-    WIN_WIDTH
+    WIN_WIDTH, WATER_TOP_LIMIT
 from code.Entity import Entity
 
 
@@ -24,3 +24,7 @@ class Player(Entity):
         elif pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
         pass
+
+        # não sair da água (não subir demais)
+        if self.rect.top < WATER_TOP_LIMIT:
+            self.rect.top = WATER_TOP_LIMIT
