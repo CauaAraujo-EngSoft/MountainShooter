@@ -69,10 +69,6 @@ class Level:
                         random.randint(5000, 15000)
                     )
 
-            # printed text
-            self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entidades: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
-
             #texto da vida
             for ent in self.entity_list:
 
@@ -127,15 +123,26 @@ class Level:
             EntityMediator.verify_health(entity_list=self.entity_list)
 
             player1_alive = False
+            player2_alive = False
 
             for ent in self.entity_list:
                 if ent.name == 'Player1':
                     player1_alive = True
 
-            if not player1_alive:
-                self.game_over_screen()
+                if ent.name == 'Player2':
+                    player2_alive = True
 
-                return
+            if self.game_mode == MENU_OPTION[1]:  # NEW GAME 2P
+
+                if not player1_alive or not player2_alive:
+                    self.game_over_screen()
+                    return
+
+            else:  # NEW GAME 1P
+
+                if not player1_alive:
+                    self.game_over_screen()
+                    return
 
             pass
 

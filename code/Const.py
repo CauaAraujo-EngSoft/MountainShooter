@@ -24,7 +24,7 @@ ENTITY_SPEED = {
     'Level1Bg8': 8,
     'Player1': 3,
     'Player2': 3,
-    'Enemy1': 2,
+    'Enemy1': 3,
     'Enemy2': 1,
     'Coin': 2,
 }
@@ -65,7 +65,7 @@ PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
 
 # S
-SPAWN_TIME = 2500
+SPAWN_TIME = 1250
 
 # W
 WIN_WIDTH = 576
