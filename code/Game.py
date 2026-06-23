@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
 
 import pygame
 
@@ -20,7 +21,7 @@ class Game:
 
             if menu_return == 'EXIT':
                 pygame.quit()
-                quit()
+                sys.exit()
 
             elif menu_return in (MENU_OPTION[0], MENU_OPTION[1], MENU_OPTION[2]):
                 level = Level(self.window, 'Level1', menu_return)
